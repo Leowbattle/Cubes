@@ -39,6 +39,20 @@ float RaySphere(Ray ray, Sphere sphere) {
 }
 
 void main() {
-	Ray ray = Ray(camPos, fsin.position - camPos);
-    fragColour = vec4(RaySphere(ray, Sphere(vec3(0), 1)));
+	vec3 rayDir = normalize(fsin.position - camPos);
+	Ray ray = Ray(camPos, rayDir);
+	Sphere sphere = Sphere(vec3(0), 0.5);
+
+	float t = RaySphere(ray, sphere);
+	vec3 p = ray.origin + t * ray.direction;
+	vec3 n = normalize(p - sphere.pos);
+
+	vec3 lightPos = vec3(1);
+	float light = max(dot(normalize(lightPos-p), n), 0.) + 0.3;
+
+	fragColour = vec4(vec3(.8,.7,.6)*light, step(0, t));
+
+	//gl_FragDepth = t;
+
+    //fragColour = vec4(RaySphere(ray, Sphere(vec3(0), 0.5)) > 0.);
 }

@@ -57,8 +57,8 @@ namespace Cubes
 			GL.Enable(EnableCap.Multisample);
 			GL.Enable(EnableCap.CullFace);
 
-			//GL.Enable(EnableCap.Blend);
-			//GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
+			GL.Enable(EnableCap.Blend);
+			GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
 		}
 
 		Vox model;
